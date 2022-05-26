@@ -1,30 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:tutorial/app/data/service/storage/services.dart';
+import 'package:tutorial/app/modules/home/binding.dart';
+import 'package:tutorial/app/modules/home/view.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-void main(){
-  runApp(MyApp());
+void main() async {
+  await GetStorage.init();
+  await Get.putAsync(() => StorageService().init());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
-          body: SafeArea(
-            child: Container(
-              color: Colors.blue,
-              alignment: Alignment.center,
-              width: double.infinity,
-              height: 100.0,
-              child: AspectRatio(
-                aspectRatio: 1/2,
-                child: Container(
-                  color: Colors.green,
-                ),
-              ),
-            ),
-          )
-        )
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: const HomePage(),
+      initialBinding: HomeBinding(),
+      builder: EasyLoading.init(),
     );
   }
-
 }
