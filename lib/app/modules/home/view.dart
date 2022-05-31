@@ -3,6 +3,9 @@ import 'package:get/get.dart';
 import 'package:tutorial/app/core/utils/extensions.dart';
 import 'package:tutorial/app/modules/home/controller.dart';
 import 'package:tutorial/app/modules/home/widgets/add_card.dart';
+import 'package:tutorial/app/modules/home/widgets/task_card.dart';
+
+import '../../data/models/task.dart';
 
 class HomePage extends GetView<HomeController> {
   const HomePage({Key?key}) : super(key: key);
@@ -21,7 +24,7 @@ class HomePage extends GetView<HomeController> {
                 crossAxisCount: 2,
               shrinkWrap: true,
               physics: const ClampingScrollPhysics(),
-              children: [AddCard()],
+              children: [TaskCard(task: Task(title:'title',icon:0xe59c,color: '#FF2B60E6')),AddCard()],
             )
           ],
         ),
